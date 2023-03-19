@@ -37,3 +37,14 @@ change to:
     declare global {
       var signin: () => Promise<string[]>;
     }
+
+module.exports = {
+webpack: (config) => {
+config.watchOptions.poll = 300;
+return config;
+},
+};
+
+##Mozilla works with https loclaly
+about:config
+network.stricttransportsecurity.preloadlist: false
