@@ -1,4 +1,3 @@
-import { currentUser } from '@zethtickets/common';
 import express, { Request, Response } from 'express'
 import { body } from 'express-validator'
 import { requireAuth, validateRequest } from '@zethtickets/common'

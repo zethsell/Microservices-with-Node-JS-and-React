@@ -27,21 +27,37 @@ it('return a status other than 401 if the user is signed in', async () => {
 
 })
 
-it.each`
-  title         | label
-  ${''}         | ${'empty'}
-  ${null}       | ${'null'}
-  ${undefined}  | ${'undefined'}
-`('returns an error if an $label title value is provided', async (title) => {
+it('returns an error if an undefined title value is provided', async () => {
   await request(app)
     .post('/api/tickets')
     .set('Cookie', signin())
     .send({
-      title,
+      title: undefined,
       price: 10
     })
     .expect(400)
+})
 
+it('returns an error if an null title value is provided', async () => {
+  await request(app)
+    .post('/api/tickets')
+    .set('Cookie', signin())
+    .send({
+      title: null,
+      price: 10
+    })
+    .expect(400)
+})
+
+it('returns an error if an empty title value is provided', async () => {
+  await request(app)
+    .post('/api/tickets')
+    .set('Cookie', signin())
+    .send({
+      title: '',
+      price: 10
+    })
+    .expect(400)
 })
 
 it.each`
